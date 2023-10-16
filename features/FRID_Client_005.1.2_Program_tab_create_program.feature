@@ -4,13 +4,11 @@ Feature: Program creation module
     When user enters the credentials
     And click on the login
     Then user is logged to dashboard page
-    When user clicks on the client module menu in side nav bar
-    Then user will be directed to client module page
-    And clicks on the add client button
-    Then click on program tab to view the list
+    When user clicks on the program module menu in side nav bar
+    Then user will be directed to program module page
 
   Scenario: Verify that the user is able to directed to program creation page when create program button is clicked
-    Given user is on the program tab
+    Given user is on the program menu
     When user clicks on the add program button
     Then user is redirected to program adding page
     And clicks on create program in that page

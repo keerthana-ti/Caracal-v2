@@ -1,14 +1,12 @@
 Feature: Client profile screen - Program
-  Scenario: Verify that the user is able to loggedin and redirected to client module
-    Given user is on the login page
-    When user enters the credentials
-    And click on the login
-    Then user is logged to dashboard page
-    When user clicks on the program module menu in side nav bar
-    Then user will be directed to program module page
+  Scenario: Verify that the user is able to get the program details view screen when program tab is clicked
+    Given user is on the client list page
+    When user clicks on the client name
+    Then user will be redirected to the view page of basic details
+    And click on the program tab
 
-  Scenario: Verify that the user is able to get the program list in that menu
-    Given user is on the program menu
+  Scenario: Verify that the user is able to get the program list in that tab
+    Given user is on the program tab
     When user get the program list in the table
     Then user will get the details listed in the table
 

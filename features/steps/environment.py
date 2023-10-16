@@ -10,9 +10,9 @@ from utilities import ConfigReader
 def before_scenario(context,scenario):
     browser_name = ConfigReader.read_configuration("basic info", "browser")
     if browser_name.__eq__("chrome"):
-        chrome_options = webdriver.ChromeOptions()
+        # chrome_options = webdriver.ChromeOptions()
         # chrome_options.add_argument("--headless")
-        context.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options = chrome_options)
+        context.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
     elif browser_name.__eq__("firefox"):
         context.driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
     elif browser_name.__eq__("edge"):
