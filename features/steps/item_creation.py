@@ -1,14 +1,13 @@
-from features.pages.ItemCreation import ItemPage
-from behave import *
 import time
 import allure
 from behave import *
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from features.pages.ItemcreationPage import ItemPage
 
 @given(u'user is on the login page')
-def login_page(context):
+def loginpage(context):
     login_page = ItemPage(context.driver)
     login_page.login_page_nav()
 
