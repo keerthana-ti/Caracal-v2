@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
 
 
 class BasePage:
@@ -40,3 +41,8 @@ class BasePage:
     def isElementDisplayed(self, locator_type, locator_value):
         element = self.getLocatorType(locator_type, locator_value)
         return element.is_displayed()
+
+    def scrollTo(self, locator_type, locator_value):
+        actions = ActionChains(self.driver)
+        web_element = self.getLocatorType(locator_type, locator_value)
+        actions.move_to_element(web_element).perform()

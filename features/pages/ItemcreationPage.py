@@ -5,7 +5,7 @@ from utilities.ConfigReader import read_configuration
 import allure
 
 log_format= "%(asctime)s - %(levelname)s - %(message)s"
-logging.basicConfig(filename='Itemcreation.log', level='INFO', format=log_format)
+logging.basicConfig(filename='Itemcreation.log', filemode = 'w', level='INFO', format=log_format)
 
 class ItemPage(BasePage):
     def __init__(self,driver):
@@ -18,15 +18,18 @@ class ItemPage(BasePage):
     dashboard_page_xpath = "//h1[contains(text(), 'Dashboard')]"
     inventory_menu_xpath = "//span[contains(text(), 'Inventory')]"
     inventory_page_xpath = "//div[contains(text(), 'Inventory')]"
+    sidenav_xpath = "//button[contains(@class, 'MuiButtonBase-root') and contains(@class, 'MuiIconButton-root') and contains(@class, 'sidenavButton')]"
     create_item_xpath = "//button[@type = 'submit']"
-    itempage_xpath = "//p[contains(text(), 'New Item']"
+    itempage_xpath = "//p[@class = 'newItem_newItemHead__sckuc']"
     itemname_xpath = "//input[@id = 'itemName']"
-    itemtype_xpath = "//li[contains(text(), 'Consumable']"
+    itemtypeid_xpath = "//div[@class='MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputSizeSmall css-jedpe8-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input']"
+    itemtype_xpath = "//li[@data-value='652537aa3bb0b22e273fa876']"
     SKU_xpath = "//input[@id = 'sku']"
     itemid_xpath = "//input[@id = 'itemId']"
     supplier_xpath = "//input[@name = 'supplier']"
-    unit_xpath = "//li[contains(text(), 'Case']"
-    addunit_xpath = "//svg[@class='iconify iconify--ph']"
+    unittype_xpath = "//input[@name='itemUnitId']/ancestor::div[contains(@class,'MuiSelect-root')]"
+    unit_xpath = "//li[@data-value='652537aa3bb0b22e273fa86d']"
+    addunit_xpath = "(//div[@class='MuiGrid-root'])[1]/svg"
     unitpopup_xpath = "//p[contains(text(), 'Add Unit ']"
     unitname_xpath = "//input[@name = 'unit']"
     unitdesc_xpath = "//input[@name = 'name']"
@@ -36,23 +39,25 @@ class ItemPage(BasePage):
     length_xpath = "//input[@name = 'length']"
     width_xpath = "//input[@name = 'width']"
     height_xpath = "//input[@name = 'height']"
-    dimensionunit_xpath = "//li[contains(text(), 'cm']"
+    dimensionunittype_xpath = "//input[@name='unitLwh']/ancestor::div[contains(@class,'MuiSelect-root')]"
+    dimensionunit_xpath = "//li[@data-value='cm']"
     weight_xpath = "//input[@name = 'weight']"
-    weightunit_xpath = "//li[contains(text(), 'kg']"
+    weighttype_xpath = "//input[@name='unitWeight']/ancestor::div[contains(@class,'MuiSelect-root')]"
+    weightunit_xpath = "//li[@data-value='g']"
     reorderlevel_xpath = "//input[@id = 'reorderLevel']"
     stock_limit_xpath = "//input[@id = 'stockLimit']"
-    itemdesc_xpath = "//input[@name = 'description']"
+    itemdesc_xpath = "//textarea[@name = 'description']"
     returnableitemcheckbox_xpath = "//input[@name = 'purchaseReturn']"
-    attachment_xpath = "//label[contains(text(), 'Attachment']"
+    attachment_xpath = "//label[@class='MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-fullWidth MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-fullWidth newItem_itemAttachment__SK3Y4 css-xsqe0f-MuiButtonBase-root-MuiButton-root']"
     # imageclick_xpath =
     saveitem_xpath = "//button[@type = 'submit']"
-    mandatory_itemname_xpath = "//p[contains(text(), 'Item name is required']"
-    mandatory_itemtype_xpath = "//p[contains(text(), 'Item type is required']"
-    mandatory_unit_xpath = "//p[contains(text(), 'Unit Weight is required']"
-    mandatory_costprice_xpath = "//p[contains(text(), 'Cost Price is required']"
-    mandatory_weight_xpath = "//p[contains(text(), 'Item name is required']"
-    mandatory_reorderlevel_xpath = "//p[contains(text(), 'Item name is required']"
-    mandatory_sellingprice_xpath = "//p[contains(text(), 'Selling Price   is required']"
+    mandatory_itemname_xpath = "//p[contains(text(), 'Item name is required')]"
+    mandatory_itemtype_xpath = "//p[contains(text(), 'Item type is required')]"
+    mandatory_unit_xpath = "//p[contains(text(), 'Unit Weight is required')]"
+    mandatory_costprice_xpath = "//p[contains(text(), 'Cost Price is required')]"
+    mandatory_weight_xpath = "//p[contains(text(), 'Item name is required')]"
+    mandatory_reorderlevel_xpath = "//p[contains(text(), 'Item name is required')]"
+    mandatory_sellingprice_xpath = "//p[contains(text(), 'Selling Price   is required')]"
     # validation_itemname_xpath =
     # validation_costprice_xpath =
     # validation_sellingprice_xpath =
@@ -61,33 +66,31 @@ class ItemPage(BasePage):
     # validation_reorderlevel_xpath =
     # validation_stocklimit_xpath =
     # validation_itemname_xpath =
-    search_xpath = "//input[@id = ':R5aj3aqql4qqpkq:']"
-    search_errmsg_xpath = "//div[contains(text(), 'No records found']"
+    search_xpath = "//div[contains(@class, 'MuiFormControl-root')]/descendant::input[@type='text']"
+    search_errmsg_xpath = "//div[contains(text(), 'No records found')]"
     # all_xpath =
     # low_xpath =
     # expired_xpath =
-    suppliername_xpath = "//li[contains(text(), 'test']"
-    item_xpath = "//li[contains(text(), 'Consumable']"
+    suppliernameclick_xpath = "//div[contains(@class, 'MuiFormControl-root') and contains(@class, 'MuiFormControl-fullWidth') and .//label[text()='Supplier']]"
+    suppliername_xpath = "//li[@data-value='test']"
+    itemnameclick_xpath = "//div[contains(@class, 'MuiFormControl-root') and contains(@class, 'MuiFormControl-fullWidth') and .//label[text()='Item Type']]"
+    item_xpath = "//li[@data-value='Product']"
     # reset_xpath =
-    checkbox_program_xpath = "//input[@id = 'MUIDataTableSelectCell-029672361598387376-0']"
+    checkbox_program_xpath = "//input[@type = 'checkbox']"
     # delete_program_xpath =
     # confirmation_program_xpath =
     # yes_programdelete_xpath =
     # deletedmsg_xpath =
-    tablesettings_xpath = "//svg[@data-testid = 'TableChartOutlinedIcon']"
-    popup_table_xpath = "//h1[contains(text(), 'Table Settings']"
-    select_column_xpath = "//button[contains(text(), 'unitPrice']"
-    apply_xpath = "//button[contains(text(), 'Apply']"
-    columnchanges_xpath = "//div[contains(text(), 'UNIT PRICE']"
-    print_xpath = "//svg[@class = 'iconify iconify--ion']"
-    download_xpath = "//svg[@class = 'iconify iconify--ic']"
+    tablesettings_xpath = "//div[contains(@class, 'MuiGrid-root') and contains(@class, 'css-scwsia-MuiGrid-root')]"
+    popup_table_xpath = "//h1[@class = 'tableSettings_tableSettingsHeader__gt6UG']"
+    select_column_xpath = "//button[contains(@class, 'MuiButtonBase-root') and contains(@class, 'tableSettings_defautbuttonId__HbqjZ') and contains(text(), 'unitPrice')]"
+    apply_xpath = "//button[contains(@class, 'MuiButtonBase-root') and contains(text(), 'Apply')]"
+    # columnchanges_xpath = "//th[contains(@class,'MuiTableCell-head') and contains(text(),'UNIT PRICE')]"
+    print_xpath = "//div[contains(@class, 'MuiGrid-root') and contains(@class, 'css-1arhiqq-MuiGrid-root')]"
+    download_xpath = "//div[contains(@class, 'MuiGrid-root') and contains(@class, 'css-1tbgb7m-MuiGrid-root')]"
     clicksort_xpath = "//div[contains(text(), 'UNIT PRICE']"
-    item_name_xpath = "//div[contains(text(), 'test']"
-    # viewpage_xpath =
-    # click_costprice =
-    # fetch_save =
-    # fetch_cancel =
-    # click_saveinedit_xpath =
+    item_name_xpath = "//div[contains(text(), 'Pendrive']"
+    viewpage_xpath = "//p[contains(text(), 'Update Item')]"
     # fetch_updatepopup =
     # fetch_updatedsuccess =
     # cancel_xpath =
@@ -114,6 +117,10 @@ class ItemPage(BasePage):
         self.click_on_element("inventory_menu_xpath", self.inventory_menu_xpath)
         logging.info("Inventory menu clicked")
 
+    def close_sidenav(self):
+        self.click_on_element("sidenav_xpath", self.sidenav_xpath)
+        logging.info("Sidenav menu clicked")
+
     def inventory_redirect(self):
         logging.info("Redirected to Item list page")
         return self.isElementDisplayed("inventory_page_xpath", self.inventory_page_xpath)
@@ -130,6 +137,10 @@ class ItemPage(BasePage):
         self.sendText("itemname_xpath", self.itemname_xpath, itemname)
         logging.info("Item name entered")
 
+    def click_itemtype(self):
+        self.click_on_element("itemtypeid_xpath", self.itemtypeid_xpath)
+        logging.info("Item type clicked")
+
     def select_itemtype(self):
         self.click_on_element("itemtype_xpath", self.itemtype_xpath)
         logging.info("Item type selected")
@@ -142,9 +153,13 @@ class ItemPage(BasePage):
         logging.info("Item Id fetched successfully")
         return self.isElementDisplayed("itemid_xpath", self.itemid_xpath)
 
-    def select_supplier(self):
-        self.click_on_element("supplier_xpath", self.supplier_xpath)
+    def enter_supplier(self, suppliername):
+        self.sendText("supplier_xpath", self.supplier_xpath, suppliername)
         logging.info("Supplier name selected")
+
+    def select_unittype(self):
+        self.click_on_element("unittype_xpath", self.unittype_xpath)
+        logging.info("unit dropdown clicked")
 
     def select_unit(self):
         self.click_on_element("unit_xpath", self.unit_xpath)
@@ -187,6 +202,7 @@ class ItemPage(BasePage):
         logging.info("Height entered")
 
     def select_dimensionunit(self):
+        self.click_on_element("dimensionunittype_xpath", self.dimensionunittype_xpath)
         self.click_on_element("dimensionunit_xpath", self.dimensionunit_xpath)
         logging.info("Dimension unit selected")
 
@@ -195,6 +211,7 @@ class ItemPage(BasePage):
         logging.info("Weight entered")
 
     def select_weightunit(self):
+        self.click_on_element("weighttype_xpath", self.weighttype_xpath)
         self.click_on_element("weightunit_xpath", self.weightunit_xpath)
         logging.info("Weight unit selected")
 
@@ -203,7 +220,7 @@ class ItemPage(BasePage):
         logging.info("Reorderlevel entered")
 
     def enter_stocklimit(self, stocklimit):
-        self.sendText("stocklimit_xpath", self.stocklimit_xpath, stocklimit)
+        self.sendText("stock_limit_xpath", self.stock_limit_xpath, stocklimit)
         logging.info("Stocklimit entered")
 
     def enter_sellingprice(self, sellingprice):
@@ -211,6 +228,7 @@ class ItemPage(BasePage):
         logging.info("Sellingprice entered")
 
     def enter_itemdescription(self, description):
+        self.scrollTo("itemdesc_xpath", self.itemdesc_xpath)
         self.sendText("itemdesc_xpath", self.itemdesc_xpath, description)
         logging.info("Item descriptiom entered")
 
@@ -219,6 +237,7 @@ class ItemPage(BasePage):
         logging.info("Returnable item checkbox clicked")
 
     def click_attachment(self):
+        self.scrollTo("attachment_xpath", self.attachment_xpath)
         self.click_on_element("attachment_xpath", self.attachment_xpath)
         logging.info("Attachment field clicked")
 
@@ -227,36 +246,89 @@ class ItemPage(BasePage):
         logging.info("Attached image clicked")
 
     def click_savebutton(self):
+        self.scrollTo("saveitem_xpath", self.saveitem_xpath)
         self.click_on_element("saveitem_xpath", self.saveitem_xpath)
         logging.info("Save button clicked")
 
     def mandatory_itemname(self):
-        logging.info("Item name mandatory error message displayed")
-        return self.isElementDisplayed("mandatory_itemname_xpath", self.mandatory_itemname_xpath)
+        self.scrollTo("mandatory_itemname_xpath", self.mandatory_itemname_xpath)
+        expected_message = "Please enter the item name"
+        element = self.getLocatorType("mandatory_itemname_xpath", self.mandatory_itemname_xpath)
+        actual_message = element.text
+        try:
+            assert actual_message == expected_message, f"Assertion failed. Expected: '{expected_message}', Actual: '{actual_message}'"
+            logging.info("Item name mandatory error message displayed")
+        except AssertionError as e:
+            logging.error(e)
+            raise e
+
 
     def mandatory_itemtype(self):
-        logging.info("Item type mandatory error message displayed")
-        return self.isElementDisplayed("mandatory_itemtype_xpath", self.mandatory_itemtype_xpath)
+        self.scrollTo("mandatory_itemtype_xpath", self.mandatory_itemtype_xpath)
+        expected_message = "Please select the item type"
+        element = self.getLocatorType("mandatory_itemtype_xpath", self.mandatory_itemtype_xpath)
+        actual_message = element.text
+        try:
+            assert actual_message == expected_message, f"Assertion failed. Expected: '{expected_message}', Actual: '{actual_message}'"
+            logging.info("Item type mandatory error message displayed")
+        except AssertionError as e:
+            logging.error(e)
+            raise e
 
     def mandatory_unit(self):
-        logging.info("Unit mandatory error message displayed")
-        return self.isElementDisplayed("mandatory_unit_xpath", self.mandatory_unit_xpath)
+        self.scrollTo("mandatory_unit_xpath", self.mandatory_unit_xpath)
+        expected_message = "please select the unit"
+        element = self.getLocatorType("mandatory_unit_xpath", self.mandatory_unit_xpath)
+        actual_message = element.text
+        try:
+            assert actual_message == expected_message, f"Assertion failed. Expected: '{expected_message}', Actual: '{actual_message}'"
+            logging.info("Unit mandatory error message displayed")
+        except AssertionError as e:
+            logging.error(e)
+            raise e
 
     def mandatory_costprice(self):
-        logging.info("Costprice mandatory error message displayed")
-        return self.isElementDisplayed("mandatory_costprice_xpath", self.mandatory_costprice_xpath)
+        expected_message = "Please enter the cost price"
+        element = self.getLocatorType("mandatory_costprice_xpath", self.mandatory_costprice_xpath)
+        actual_message = element.text
+        try:
+            assert actual_message == expected_message, f"Assertion failed. Expected: '{expected_message}', Actual: '{actual_message}'"
+            logging.info("Costprice mandatory error message displayed")
+        except AssertionError as e:
+            logging.error(e)
+            raise e
 
     def mandatory_weight(self):
-        logging.info("Weight mandatory error message displayed")
-        return self.isElementDisplayed("mandatory_weight_xpath", self.mandatory_weight_xpath)
+        expected_message = "please enter the item weight"
+        element = self.getLocatorType("mandatory_weight_xpath", self.mandatory_weight_xpath)
+        actual_message = element.text
+        try:
+            assert actual_message == expected_message, f"Assertion failed. Expected: '{expected_message}', Actual: '{actual_message}'"
+            logging.info("Weight mandatory error message displayed")
+        except AssertionError as e:
+            logging.error(e)
+            raise e
 
     def mandatory_reorderlevel(self):
-        logging.info("Reorderlevel mandatory error message displayed")
-        return self.isElementDisplayed("mandatory_reorderlevel_xpath", self.mandatory_reorderlevel_xpath)
+        expected_message = "Please enter the reorder limit"
+        element = self.getLocatorType("mandatory_reorderlevel_xpath", self.mandatory_reorderlevel_xpath)
+        actual_message = element.text
+        try:
+            assert actual_message == expected_message, f"Assertion failed. Expected: '{expected_message}', Actual: '{actual_message}'"
+            logging.info("Reorder level mandatory error message displayed")
+        except AssertionError as e:
+            logging.error(e)
+            raise e
 
     def mandatory_sellingprice(self):
-        logging.info("Selling price mandatory error message displayed")
-        return self.isElementDisplayed("mandatory_sellingprice_xpath", self.mandatory_sellingprice_xpath)
+        expected_message = "Please enter the selling price"
+        element = self.getLocatorType("mandatory_sellingprice_xpath", self.mandatory_sellingprice_xpath)
+        actual_message = element.text
+        try:
+            assert actual_message == expected_message, f"Assertion failed. Expected: '{expected_message}', Actual: '{actual_message}'"
+            logging.info("Selling price mandatory error message displayed")
+        except AssertionError as e:
+            logging.error(e)
 
     def validation_itemname(self):
         logging.info("Item name validation error message displayed")
@@ -287,6 +359,7 @@ class ItemPage(BasePage):
         return self.isElementDisplayed("mandatory_stocklimit_xpath", self.validation_stocklimit_xpath)
 
     def enter_search(self, searchkey):
+        self.click_on_element("search_xpath", self.search_xpath)
         self.sendText("search_xpath", self.search_xpath, searchkey)
         logging.info("Search entered")
 
@@ -306,13 +379,21 @@ class ItemPage(BasePage):
         self.click_on_element("expired_xpath", self.expired_xpath)
         logging.info("Expired is clicked")
 
+    def click_supplier(self):
+        self.click_on_element("suppliernameclick_xpath", self.suppliernameclick_xpath)
+        logging.info("Supplier clicked")
+
     def select_supplier(self):
         self.click_on_element("suppliername_xpath", self.suppliername_xpath)
         logging.info("Suppliername selected")
 
-    def select_item(self):
+    def click_itemtypemenu(self):
+        self.click_on_element("itemnameclick_xpath", self.itemnameclick_xpath)
+        logging.info("Item type clicked")
+
+    def select_itemtypemenu(self):
         self.click_on_element("item_xpath", self.item_xpath)
-        logging.info("Item selected")
+        logging.info("Item type selected")
 
     def click_reset(self):
         self.click_on_element("reset_xpath", self.reset_xpath)
@@ -354,9 +435,9 @@ class ItemPage(BasePage):
         self.click_on_element("apply_xpath", self.apply_xpath)
         logging.info("Apply button clicked")
 
-    def clientcolumn_table(self):
-        logging.info("Column change affected")
-        return self.isElementDisplayed("columnchanges_xpath", self.columnchanges_xpath)
+    # def clientcolumn_table(self):
+    #     logging.info("Column change affected")
+    #     return self.isElementDisplayed("columnchanges_xpath", self.columnchanges_xpath)
 
     def click_printicon(self):
         self.click_on_element("print_xpath", self.print_xpath)

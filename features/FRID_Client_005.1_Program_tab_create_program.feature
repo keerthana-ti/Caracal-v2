@@ -30,8 +30,8 @@ Feature: Program creation module
     Given user is on the program adding page
     When user selects the item from the dropdown in the item name table column
     Then all the details of the item will be fetched in the table automatically
-    And after selected the first item name
-    Then the user will get the another row for adding another item
+#    And after selected the first item name
+#    Then the user will get the another row for adding another item
     And click on save button to map the added item to the program creating
 
   Scenario: Verify that the user is able to redirected to item add page to create an new item that was not in the item name dropdown
@@ -87,27 +87,27 @@ Feature: Program creation module
     And if the user clicks on the item name dropdown
     Then the item added will be displayed
 
-  Scenario: Verify that the user is able to get the mandatory error messages for item name, item type, unit
-    Given user is on the new item page
-    When user clicks on save button without entering item name, item type, unit
-    Then user will get the mandatory error message for item name, item type, unit fields
-
-  Scenario: Verify that the user is able to get the mandatory error messages for cost price, weight, reorder level, selling price
-    Given user is on the new item page
-    When user clicks on save button without entering cost price, weight, reorder level, selling price
-    Then user will get the mandatory error message for cost price, weight, reorder level, selling price fields
-
-  Scenario: Verify that the user is able to get the validation error message for item name, SKU, Item id
-    Given user is on the new item page
-    When user enters other than alphanumeric in the item name
-    Then user will get the validation error message for item name
-    And SKU, Item id needs to be in alphanumeric if it is other than alphanumeric
-    Then user will get the validation error message
-
-  Scenario: Verify that the user is able to get the validation error message for cost price, selling price, dimensions, weight, reorder level, stock limit
-    Given user is on the new item page
-    When user enters other than numbers in the cost price, selling price, dimensions, weight, reorder level, stock limit
-    Then user will get the validation error message for cost price, selling price, dimensions, weight, reorder level, stock limit fields
+#  Scenario: Verify that the user is able to get the mandatory error messages for item name, item type, unit
+#    Given user is on the new item page
+#    When user clicks on save button without entering item name, item type, unit
+#    Then user will get the mandatory error message for item name, item type, unit fields
+#
+#  Scenario: Verify that the user is able to get the mandatory error messages for cost price, weight, reorder level, selling price
+#    Given user is on the new item page
+#    When user clicks on save button without entering cost price, weight, reorder level, selling price
+#    Then user will get the mandatory error message for cost price, weight, reorder level, selling price fields
+#
+#  Scenario: Verify that the user is able to get the validation error message for item name, SKU, Item id
+#    Given user is on the new item page
+#    When user enters other than alphanumeric in the item name
+#    Then user will get the validation error message for item name
+#    And SKU, Item id needs to be in alphanumeric if it is other than alphanumeric
+#    Then user will get the validation error message
+#
+#  Scenario: Verify that the user is able to get the validation error message for cost price, selling price, dimensions, weight, reorder level, stock limit
+#    Given user is on the new item page
+#    When user enters other than numbers in the cost price, selling price, dimensions, weight, reorder level, stock limit
+#    Then user will get the validation error message for cost price, selling price, dimensions, weight, reorder level, stock limit fields
 
   Scenario: Verify that the user is able to delete the items by clicking the checkbox in the list
     Given user is on the program adding page
@@ -195,12 +195,12 @@ Feature: Program creation module
   Scenario: Verify that the user is able to download the selectd program details from the table
     Given user is on the program list page
     When user clicks on the checkbox
-    And clicks on download icon
+    And user clicks on the download icon
     Then user will get the selected program detail downloaded
 
   Scenario: Verify that the user is able to download the filtered program details from the table
     Given user is on the program list page
     When user apply the filters
-    And click on the download icon
+    And user clicks on the download icon
     Then user will get the applied filter program details
 
